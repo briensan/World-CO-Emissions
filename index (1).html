@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CO2 Prediction</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: linear-gradient(135deg, #4caf50, #96e6a1);
+            margin: 0;
+            color: #2e7d32;
+        }
+
+        h1 {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background: white;
+            color: #333;
+            padding: 20px;
+            width: 280px;
+            border-radius: 20px;
+            box-shadow: 0px 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(135deg, #56ab2f, #a8e063);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            opacity: 0.9;
+        }
+
+        .result-box {
+            background: white;
+            color: #2e7d32;
+            width: 320px;
+            margin: 20px auto;
+            padding: 15px;
+            border-radius: 15px;
+            text-align: center;
+            font-size: 18px;
+        }       
+        .card:hover {
+            transform: translateY(-8px);
+            transition: 0.3s ease;
+        }
+        
+        input:focus, select:focus {
+            border: 2px solid #4caf50;
+            outline: none;
+            box-shadow: 0px 0px 8px rgba(76, 175, 80, 0.5);
+        }
+        
+    </style>
+</head>
+
+<body>
+
+<h1 style="color:#1b5e20;">🌿 Carbon Footprint Analyzer</h1>
+
+<div class="container">
+
+    <!-- DATASET -->
+    <div class="card">
+        <h3>📊 Dataset</h3>
+        <form action="/predict" method="post">
+
+            <select name="country">
+                <option>Select Country</option>
+                {% for c in countries %}
+                <option value="{{c}}" {% if selected_country == c %}selected{% endif %}>{{c}}</option>
+                {% endfor %}
+            </select>
+
+            <select name="year">
+                <option>Select Year</option>
+                {% for y in years %}
+                <option value="{{y}}" {% if selected_year == y %}selected{% endif %}>{{y}}</option>
+                {% endfor %}
+            </select>
+
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+
+    <!-- MANUAL -->
+    <div class="card">
+        <h3>✍️ Manual</h3>
+        <form action="/manual_predict" method="post">
+
+            <input type="text" name="year" placeholder="Year">
+            <input type="text" name="renewable" placeholder="Renewable %">
+            <input type="text" name="carbon" placeholder="Carbon Intensity">
+            <input type="text" name="gdp" placeholder="CO2 per GDP">
+            <input type="text" name="methane" placeholder="Methane">
+            <input type="text" name="n2o" placeholder="N2O">
+
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+
+    <!-- FUTURE -->
+    <div class="card">
+        <h3>🚀 Future</h3>
+        <form action="/future_predict" method="post">
+
+            <input type="text" name="year" placeholder="Future Year">
+
+            <button type="submit">Predict</button>
+        </form>
+    </div>
+
+</div>
+
+<div class="result-box">
+    {{ prediction_text }}
+</div>
+
+</body>
+</html>

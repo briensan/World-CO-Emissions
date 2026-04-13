@@ -1,8 +1,10 @@
-# World-CO-Emissions
+# Capstone-2
+
+**Project Update (Weeks 1–2): Data Preparation Completed***
 
 **Integrated two datasets:**
 
-  * World CO₂ Emissions dataset
+  * World CO₂ Emissions dataset (base dataset from last semester)
   * Renewable Energy Consumption dataset (1990–2022)
 * Cleaned and standardized both datasets (country identifiers and year formatting).
 * Converted renewable dataset to a tidy/long format with:
@@ -18,7 +20,7 @@
 *** Final output file:**
   * final_merged_co2_renewable_1990_2020_filtered.csv
 
-***Next Steps ***
+***Next Steps (Week 3 onward)***
 
 * Perform EDA (trends, distributions, missingness).
 * Correlation analysis between renewable energy consumption and CO₂ metrics.
